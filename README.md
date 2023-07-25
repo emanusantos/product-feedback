@@ -6,7 +6,7 @@
 
 The challenge is to build out this product feedback application and get it looking as close to the design as possible.
 
-Your users should be able to:
+The users should be able to:
 
 - View the optimal layout for the app depending on their device's screen size
 - See hover states for all interactive elements on the page
@@ -16,9 +16,6 @@ Your users should be able to:
 - Filter suggestions by category
 - Add comments and replies to a product feedback request
 - Upvote product feedback requests
-- **Bonus**: Keep track of any changes, even after refreshing the browser (`localStorage` could be used for this if you're not building out a full-stack app)
-
-Want some support on the challenge? [Join our Slack community](https://www.frontendmentor.io/slack) and ask questions in the **#help** channel.
 
 ### Expected Behaviour
 
