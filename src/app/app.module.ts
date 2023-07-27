@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ButtonComponent } from './components/button/button.component';
 import { HomeComponent } from './routes/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SelectComponent } from './components/select/select.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { HeaderComponent } from './components/header/header.component';
     ButtonComponent,
     HomeComponent,
     HeaderComponent,
+    SelectComponent,
   ],
   imports: [
     BrowserModule,
