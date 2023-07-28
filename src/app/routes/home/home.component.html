@@ -1,1 +1,7 @@
 <app-header />
+
+<ul>
+    <li *ngFor="let request of data.productRequests">
+        {{ stringify(request) }}
+    </li>
+</ul>

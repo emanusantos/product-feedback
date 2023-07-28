@@ -9,7 +9,10 @@ import * as mock from 'assets/data.json';
   styleUrls: ['./home.component.sass'],
 })
 export class HomeComponent implements OnInit {
-  data: typeof mock | undefined;
+  data: typeof mock = {
+    currentUser: {} as typeof mock.currentUser,
+    productRequests: [],
+  };
 
   constructor(private apiService: ApiService) {}
 
@@ -17,5 +20,9 @@ export class HomeComponent implements OnInit {
     this.apiService.fetchJSON().subscribe((data) => {
       this.data = data;
     });
+  }
+
+  stringify(input: (typeof mock.productRequests)[number]) {
+    return JSON.stringify(input.title);
   }
 }
