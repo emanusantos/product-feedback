@@ -21,8 +21,4 @@ export class HomeComponent implements OnInit {
       this.data = data;
     });
   }
-
-  stringify(input: (typeof mock.productRequests)[number]) {
-    return JSON.stringify(input.title);
-  }
 }

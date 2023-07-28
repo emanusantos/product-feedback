@@ -8,6 +8,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { HomeComponent } from './routes/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SelectComponent } from './components/select/select.component';
+import { FeedbackComponent } from './components/feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { SelectComponent } from './components/select/select.component';
     HomeComponent,
     HeaderComponent,
     SelectComponent,
+    FeedbackComponent,
   ],
   imports: [
     BrowserModule,
