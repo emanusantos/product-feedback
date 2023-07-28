@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
+    document.body.className = 'home';
+
     this.apiService.fetchJSON().subscribe((data) => {
       this.data = data;
     });
