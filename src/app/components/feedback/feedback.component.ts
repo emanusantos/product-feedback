@@ -17,5 +17,4 @@ export class FeedbackComponent {
     upvotes: 0,
     comments: [],
   };
-  @Input() isLastItem = false;
 }

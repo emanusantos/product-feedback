@@ -1,5 +1,5 @@
 <app-header />
 
 <main>
-    <app-feedback *ngFor="let request of data.productRequests; let i = index" [request]="request" [isLastItem]="i === data.productRequests.length - 1" />
+    <app-feedback *ngFor="let request of data.productRequests" [request]="request" />
 </main>

@@ -9,6 +9,7 @@ import { HomeComponent } from './routes/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SelectComponent } from './components/select/select.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
+import { UpvotesComponent } from './components/upvotes/upvotes.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
     HeaderComponent,
     SelectComponent,
     FeedbackComponent,
+    UpvotesComponent,
   ],
   imports: [
     BrowserModule,
