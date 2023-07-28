@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./select.component.sass']
 })
 export class SelectComponent {
+  initialValue = 'downvotes';
 
+  getSelectedValue(event: any) {
+    this.initialValue = event.target.value;
+
+    console.log(this.initialValue)
+  }
 }

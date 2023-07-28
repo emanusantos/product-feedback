@@ -3,9 +3,12 @@
         Sort by : 
     </label>
     
-    <select name="sort-by" id="sort-by">
-        <option value="upvotes">
+    <select name="sort-by" id="sort-by" (change)="getSelectedValue($event)">
+        <option value="upvotes" selected="initialValue === value">
             Most Upvotes
+        </option>
+        <option value="downvotes" selected="initialValue === value">
+            Most downvotes
         </option>
     </select>
 
