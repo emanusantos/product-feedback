@@ -3,6 +3,8 @@
         <p class="title">Frontend Mentor</p>
         <p class="subtitle">Feedback Board</p>
     </div>
-    <div></div>
+    <div class="menu-categories">
+        <app-tag *ngFor="let category of categories" [title]="category" (click)="selectCategory(category)" [selected]="category === selectedCategory" />
+    </div>
     <div></div>
 </aside>
