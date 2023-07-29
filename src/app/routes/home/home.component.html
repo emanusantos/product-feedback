@@ -1,8 +1,8 @@
 <div class="container">
-    <app-menu (provideFilter)="filterData($event)" />
+    <app-menu (provideFilter)="filterData($event)"  />
 
     <div class="right-content">
-        <app-header />
+        <app-header (provideSort)="sortData($event)" />
 
         <main>
             <ng-container *ngIf="!!(filteredData || data.productRequests).length; else showThis">

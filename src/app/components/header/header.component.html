@@ -2,7 +2,7 @@
     <div class="left-content">
         <img src="../../../assets/shared/icon-bulb.svg">
         <p>6 Suggestions</p>
-        <app-select />
+        <app-select (provideSort)="forwardSort($event)" />
     </div>
     <app-button [label]="'+ Add Feedback'" />
 </header>

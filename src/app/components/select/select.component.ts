@@ -1,10 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
-type Option = {
-  label: string;
-  value: 'upvotes' | 'comments';
-  order: 'ASC' | 'DESC';
-};
+import { Option } from 'src/app/types/option';
 
 @Component({
   selector: 'app-select',
@@ -12,6 +8,7 @@ type Option = {
   styleUrls: ['./select.component.sass'],
 })
 export class SelectComponent {
+  @Output() provideSort = new EventEmitter<Option>();
   isSelectVisible = false;
 
   options: Array<Option> = [
@@ -28,6 +25,13 @@ export class SelectComponent {
   }
 
   selectOption(option: Option) {
+    if (this.selectedOption === option) {
+      this.isSelectVisible = false;
+      return;
+    }
+
+    this.provideSort.emit(option);
+
     this.selectedOption = option;
 
     this.isSelectVisible = false;
