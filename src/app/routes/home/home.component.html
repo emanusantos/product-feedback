@@ -1,5 +1,11 @@
-<app-header />
+<div class="container">
+    <app-menu />
 
-<main>
-    <app-feedback *ngFor="let request of data.productRequests" [request]="request" />
-</main>
+    <div>
+        <app-header />
+
+        <main>
+            <app-feedback *ngFor="let request of data.productRequests" [request]="request" />
+        </main>
+    </div>
+</div>

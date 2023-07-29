@@ -11,6 +11,7 @@ import { SelectComponent } from './components/select/select.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { UpvotesComponent } from './components/upvotes/upvotes.component';
 import { TagComponent } from './components/tag/tag.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { TagComponent } from './components/tag/tag.component';
     FeedbackComponent,
     UpvotesComponent,
     TagComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
