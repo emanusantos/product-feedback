@@ -4,7 +4,7 @@
     <section>
         <h3>{{ request.title }}</h3>
         <p>{{ request.description }}</p>
-        <app-tag [title]="request.category" />
+        <app-tag [title]="request.category" [ngStyle]="{ 'pointer-events': 'none' }" />
     </section>
 
     <div class="comments">
