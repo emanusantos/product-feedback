@@ -1,11 +1,11 @@
 <div class="container">
-    <app-menu />
+    <app-menu (provideFilter)="filterData($event)" />
 
     <div class="right-content">
         <app-header />
 
         <main>
-            <app-feedback *ngFor="let request of data.productRequests" [request]="request" />
+            <app-feedback *ngFor="let request of (filteredData || data.productRequests)" [request]="request" />
         </main>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -6,10 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./menu.component.sass'],
 })
 export class MenuComponent {
+  @Output() provideFilter = new EventEmitter<string>();
   categories = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature'];
   selectedCategory = 'All';
 
   selectCategory(category: string) {
     this.selectedCategory = category;
+
+    this.provideFilter.emit(category);
   }
 }

@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
     productRequests: [],
   };
 
+  filteredData: typeof mock.productRequests | undefined;
+
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
@@ -22,5 +24,17 @@ export class HomeComponent implements OnInit {
     this.apiService.fetchJSON().subscribe((data) => {
       this.data = data;
     });
+  }
+
+  filterData(filter: string) {
+    if (filter === 'All') {
+      this.filteredData = undefined;
+
+      return;
+    }
+
+    this.filteredData = this.data.productRequests.filter(
+      (item) => item.category === filter.toLowerCase()
+    );
   }
 }
