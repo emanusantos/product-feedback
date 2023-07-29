@@ -12,6 +12,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { UpvotesComponent } from './components/upvotes/upvotes.component';
 import { TagComponent } from './components/tag/tag.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { EmptyComponent } from './components/empty/empty.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MenuComponent } from './components/menu/menu.component';
     UpvotesComponent,
     TagComponent,
     MenuComponent,
+    EmptyComponent,
   ],
   imports: [
     BrowserModule,
