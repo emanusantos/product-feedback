@@ -3,13 +3,39 @@
         <p class="title">Frontend Mentor</p>
         <p class="subtitle">Feedback Board</p>
     </div>
+
     <div class="menu-categories">
         <app-tag *ngFor="let category of categories" [title]="category" (click)="selectCategory(category)" [selected]="category === selectedCategory" />
     </div>
+
     <div class="menu-footer">
-        <div class="row">
+        <div class="row" id="roadmap">
             <h3>Roadmap</h3>
             <a href="">View</a>
+        </div>
+
+        <div class="row">
+            <div class="dotted">
+                <div class="circle" id="orange"></div>
+                <p class="status">Planned</p>
+            </div>
+            <b>2</b>
+        </div>
+
+        <div class="row">
+            <div class="dotted">
+                <div class="circle" id="purple"></div>
+                <p class="status">In-Progress</p>
+            </div>
+            <b>3</b>
+        </div>
+
+        <div class="row">
+            <div class="dotted">
+                <div class="circle" id="cyan"></div>
+                <p class="status">Live</p>
+            </div>
+            <b>1</b>
         </div>
     </div>
 </aside>
