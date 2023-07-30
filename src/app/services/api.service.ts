@@ -25,20 +25,8 @@ export class ApiService {
     [] as ProductRequests
   );
 
-  dataFilter = new BehaviorSubject('');
-  dataSort: BehaviorSubject<Option> = new BehaviorSubject({} as Option);
-
   currentData = this.dataSource.asObservable();
   filteredData = this.filteredDataSource.asObservable();
-  filterObservable = this.dataFilter.asObservable();
-  sortObservable = this.dataSort.asObservable();
-
-  filterSubscription = this.filterObservable.subscribe(
-    this.filterSubscriptionHandler
-  );
-  sortSubscription = this.sortObservable.subscribe(
-    this.sortSubscriptionHandler
-  );
 
   constructor() {
     this.fetchJSON();
@@ -51,7 +39,7 @@ export class ApiService {
     });
   }
 
-  filterSubscriptionHandler(filter: string) {
+  setFilter(filter: string) {
     const data = this.dataSource.getValue();
 
     this.filteredDataSource.next(
@@ -61,19 +49,11 @@ export class ApiService {
     );
   }
 
-  sortSubscriptionHandler(sort: Option) {
+  setSort(sort: Option) {
     const data = this.dataSource.getValue();
 
     this.filteredDataSource.next(
       data.productRequests.sort((a, b) => handleSort(a, b, sort))
     );
-  }
-
-  setFilter(filter: string) {
-    this.dataFilter.next(filter);
-  }
-
-  setSort(sort: Option) {
-    this.dataSort.next(sort);
   }
 }
