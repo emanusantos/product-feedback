@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
 
 import { Option } from 'src/app/types/option';
 
@@ -8,7 +9,6 @@ import { Option } from 'src/app/types/option';
   styleUrls: ['./select.component.sass'],
 })
 export class SelectComponent {
-  @Output() provideSort = new EventEmitter<Option>();
   isSelectVisible = false;
 
   options: Array<Option> = [
@@ -20,6 +20,8 @@ export class SelectComponent {
 
   selectedOption: Option = this.options[0];
 
+  constructor(private apiService: ApiService) {}
+
   toggleSelect() {
     this.isSelectVisible = !this.isSelectVisible;
   }
@@ -30,7 +32,7 @@ export class SelectComponent {
       return;
     }
 
-    this.provideSort.emit(option);
+    this.apiService.setSort(option);
 
     this.selectedOption = option;
 

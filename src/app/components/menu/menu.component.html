@@ -19,7 +19,7 @@
                 <div class="circle" id="orange"></div>
                 <p class="status">Planned</p>
             </div>
-            <b>2</b>
+            <b>{{ getRoadmap().planned }}</b>
         </div>
 
         <div class="row">
@@ -27,7 +27,7 @@
                 <div class="circle" id="purple"></div>
                 <p class="status">In-Progress</p>
             </div>
-            <b>3</b>
+            <b>{{ getRoadmap().inProgress }}</b>
         </div>
 
         <div class="row">
@@ -35,7 +35,7 @@
                 <div class="circle" id="cyan"></div>
                 <p class="status">Live</p>
             </div>
-            <b>1</b>
+            <b>{{ getRoadmap().live }}</b>
         </div>
     </div>
 </aside>

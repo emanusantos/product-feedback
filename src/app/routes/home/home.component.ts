@@ -22,19 +22,13 @@ export class HomeComponent implements OnInit {
     document.body.className = 'home';
 
     this.apiService.currentData.subscribe((data) => {
-      this.data = data.productRequests;
+      this.data = data.productRequests.filter(
+        (item) => item.status === 'suggestion'
+      );
     });
 
     this.apiService.filteredData.subscribe((data) => {
-      this.filteredData = data;
+      this.filteredData = data.filter((item) => item.status === 'suggestion');
     });
-  }
-
-  filterData(filter: string) {
-    return this.apiService.setFilter(filter);
-  }
-
-  sortData(option: Option) {
-    return this.apiService.setSort(option);
   }
 }
