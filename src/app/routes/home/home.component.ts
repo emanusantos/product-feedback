@@ -12,67 +12,29 @@ type ProductRequests = typeof mock.productRequests;
   styleUrls: ['./home.component.sass'],
 })
 export class HomeComponent implements OnInit {
-  data: typeof mock = {
-    currentUser: {} as typeof mock.currentUser,
-    productRequests: [],
-  };
+  data: ProductRequests = [];
 
-  filteredData: ProductRequests | undefined;
+  filteredData: ProductRequests = [];
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     document.body.className = 'home';
 
-    this.apiService.fetchJSON().subscribe((data) => {
-      this.data = {
-        ...data,
-        productRequests: data.productRequests.sort((a, b) =>
-          a.upvotes < b.upvotes ? 1 : -1
-        ),
-      };
+    this.apiService.currentData.subscribe((data) => {
+      this.data = data.productRequests;
+    });
+
+    this.apiService.filteredData.subscribe((data) => {
+      this.filteredData = data;
     });
   }
 
   filterData(filter: string) {
-    if (filter === 'All') {
-      this.filteredData = undefined;
-
-      return;
-    }
-
-    this.filteredData = this.data.productRequests.filter(
-      (item) => item.category === filter.toLowerCase()
-    );
+    return this.apiService.setFilter(filter);
   }
 
-  sortData({ order, value: parameter }: Option) {
-    const sortByParameter = {
-      upvotes: (a: ProductRequests[number], b: ProductRequests[number]) => {
-        if (order === 'DESC') {
-          return a.upvotes < b.upvotes ? 1 : -1;
-        }
-
-        return a.upvotes > b.upvotes ? 1 : -1;
-      },
-      comments: (a: ProductRequests[number], b: ProductRequests[number]) => {
-        if (order === 'DESC') {
-          return Number(a.comments?.length) < Number(b.comments?.length)
-            ? 1
-            : -1;
-        }
-
-        return Number(a.comments?.length) > Number(b.comments?.length) ? 1 : -1;
-      },
-    };
-
-    if (this.filteredData) {
-      this.filteredData = this.filteredData.sort(sortByParameter[parameter]);
-      return;
-    }
-
-    this.data.productRequests = this.data.productRequests.sort(
-      sortByParameter[parameter]
-    );
+  sortData(option: Option) {
+    return this.apiService.setSort(option);
   }
 }
