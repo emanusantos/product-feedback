@@ -8,17 +8,23 @@ import { Option } from '../types/option';
 
 import { handleFilter, handleSort } from '../helpers/array-utils.helper';
 
-type ProductRequests = typeof mock.productRequests;
+type ProductRequests = Array<
+  (typeof mock.productRequests)[number] & { isUpvoted?: boolean }
+>;
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
+  upvotes: number[] = [];
+
   dataSource: BehaviorSubject<typeof mock> = new BehaviorSubject({
     currentUser: {
       image: '',
       name: '',
       username: '',
     },
-    productRequests: [] as typeof mock.productRequests,
+    productRequests: [] as typeof mock.productRequests & {
+      isUpvoted?: boolean;
+    },
   });
 
   filteredDataSource: BehaviorSubject<ProductRequests> = new BehaviorSubject(
@@ -55,5 +61,21 @@ export class ApiService {
     this.filteredDataSource.next(
       data.productRequests.sort((a, b) => handleSort(a, b, sort))
     );
+  }
+
+  upvote(id: number) {
+    const data = this.filteredDataSource.getValue();
+
+    this.upvotes.push(id);
+
+    const itemIndex = data.findIndex((item) => item.id === id);
+
+    data[itemIndex] = {
+      ...data[itemIndex],
+      upvotes: data[itemIndex].upvotes + 1,
+      isUpvoted: true,
+    };
+
+    this.filteredDataSource.next(data);
   }
 }
