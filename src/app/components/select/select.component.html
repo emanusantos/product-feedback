@@ -1,0 +1,22 @@
+<div class="wrapper">
+    <div class="select" (click)="toggleSelect()">
+        <p class="label">
+            Sort by : <span>{{ selectedOption.label }}</span>
+        </p>
+    
+        <img class="arrow" [attr.src]="getIcon()">
+    </div>
+
+    <div class="content" *ngIf="isSelectVisible">
+        <ng-container *ngFor="let option of options; let index = index">
+            <div class="option" (click)="selectOption(option)">
+                <p class="body-1">{{ option.label }}</p>
+                <img class="checkmark" src="../../../assets/shared/icon-check.svg" *ngIf="option.label === selectedOption.label">
+            </div>
+    
+            <hr *ngIf="index !== options.length - 1" />
+        </ng-container>
+    </div>
+</div>
+
+

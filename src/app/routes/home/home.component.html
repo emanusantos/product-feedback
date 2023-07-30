@@ -1,0 +1,17 @@
+<div class="container">
+    <app-menu (provideFilter)="filterData($event)"  />
+
+    <div class="right-content">
+        <app-header [totalItems]="(filteredData || data.productRequests).length" (provideSort)="sortData($event)" />
+
+        <main>
+            <ng-container *ngIf="!!(filteredData || data.productRequests).length; else showThis">
+                <app-feedback *ngFor="let request of (filteredData || data.productRequests)" [request]="request" />
+            </ng-container>
+
+            <ng-template #showThis>
+                <app-empty />
+            </ng-template>
+        </main>
+    </div>
+</div>

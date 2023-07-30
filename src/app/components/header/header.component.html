@@ -1,0 +1,8 @@
+<header>
+    <div class="left-content">
+        <img src="../../../assets/shared/icon-bulb.svg">
+        <p>{{ totalItems }} Suggestions</p>
+        <app-select (provideSort)="forwardSort($event)" />
+    </div>
+    <app-button [label]="'+ Add Feedback'" />
+</header>

@@ -1,0 +1,98 @@
+@import 'src/styles'
+
+aside
+    display: flex
+    flex-direction: column
+    gap: 1.5rem
+
+.menu-header
+    width: 16rem
+    height: 8.56rem
+    background-image: url(../../../assets/suggestions/desktop/background-header.png)
+    background-repeat: no-repeat
+    border: none
+    border-radius: 10px
+    padding: 1.5rem
+    display: flex
+    flex-direction: column
+    justify-content: flex-end
+    cursor: default
+
+.title
+    font-size: 20px
+    font-weight: 700
+    color: $white
+    letter-spacing: 0.25px
+    line-height: 29px
+
+.subtitle
+    font-size: 15px
+    color: $white
+    font-weight: 500
+    line-height: 22px
+    opacity: 0.75
+
+.menu-categories
+    background-color: $white
+    border-radius: 10px
+    padding: 1.5rem 1.5rem 1.31rem 1.5rem
+    gap: .5rem
+    display: flex
+    max-width: 16rem
+    flex-wrap: wrap
+
+app-tag
+    margin-bottom: 0.19rem
+    cursor: pointer
+
+.menu-footer
+    padding: 1.5rem 1.5rem 1rem 1.5rem
+    border-radius: 10px
+    background-color: $white
+    cursor: default
+
+.row
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-bottom: .5rem
+
+#roadmap
+    margin-bottom: 1rem
+
+a
+    font-size: 13px
+    color: $primary
+
+    &:hover
+        color: $link-hover
+
+.status
+    font-family: Jost
+    font-size: 16px
+    color: $grayish-blue
+    font-weight: 400
+
+b
+    font-size: 16px
+    color: $grayish-blue
+
+.dotted
+    display: flex
+    justify-content: center
+    align-items: center
+    gap: 1rem
+
+.circle
+    width: .5rem
+    height: .5rem
+    border-radius: 50%
+
+#orange
+    background-color: $orange
+
+#purple
+    background-color: $secondary
+
+#cyan
+    background-color: $light-blue
