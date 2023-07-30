@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, delay, lastValueFrom, map, of } from 'rxjs';
 
 import * as mock from 'assets/data.json';
+
 import { Option } from '../types/option';
+
+import { handleFilter, handleSort } from '../helpers/array-utils.helper';
 
 type ProductRequests = typeof mock.productRequests;
 
@@ -18,39 +21,24 @@ export class ApiService {
     productRequests: [] as typeof mock.productRequests,
   });
 
-  currentData = this.dataSource.asObservable();
-
   filteredDataSource: BehaviorSubject<ProductRequests> = new BehaviorSubject(
     [] as ProductRequests
   );
 
-  filteredData = this.filteredDataSource.asObservable();
-
   dataFilter = new BehaviorSubject('');
-
-  filterObservable = this.dataFilter.asObservable();
-
-  filterSubscription = this.filterObservable.subscribe((filter) => {
-    const data = this.dataSource.getValue();
-
-    this.filteredDataSource.next(
-      data.productRequests.filter((item) =>
-        this.handleFilter(item, filter.toLowerCase())
-      )
-    );
-  });
-
   dataSort: BehaviorSubject<Option> = new BehaviorSubject({} as Option);
 
+  currentData = this.dataSource.asObservable();
+  filteredData = this.filteredDataSource.asObservable();
+  filterObservable = this.dataFilter.asObservable();
   sortObservable = this.dataSort.asObservable();
 
-  sortSubscription = this.sortObservable.subscribe((sort) => {
-    const data = this.dataSource.getValue();
-
-    this.filteredDataSource.next(
-      data.productRequests.sort((a, b) => this.handleSort(a, b, sort))
-    );
-  });
+  filterSubscription = this.filterObservable.subscribe(
+    this.filterSubscriptionHandler
+  );
+  sortSubscription = this.sortObservable.subscribe(
+    this.sortSubscriptionHandler
+  );
 
   constructor() {
     this.fetchJSON();
@@ -63,44 +51,29 @@ export class ApiService {
     });
   }
 
+  filterSubscriptionHandler(filter: string) {
+    const data = this.dataSource.getValue();
+
+    this.filteredDataSource.next(
+      data.productRequests.filter((item) =>
+        handleFilter(item, filter.toLowerCase())
+      )
+    );
+  }
+
+  sortSubscriptionHandler(sort: Option) {
+    const data = this.dataSource.getValue();
+
+    this.filteredDataSource.next(
+      data.productRequests.sort((a, b) => handleSort(a, b, sort))
+    );
+  }
+
   setFilter(filter: string) {
     this.dataFilter.next(filter);
   }
 
-  handleFilter(item: (typeof mock.productRequests)[number], filter: string) {
-    if (filter === 'all') return true;
-
-    return item.category === filter;
-  }
-
   setSort(sort: Option) {
     this.dataSort.next(sort);
-  }
-
-  handleSort(
-    a: ProductRequests[number],
-    b: ProductRequests[number],
-    sort: Option
-  ) {
-    const sortByParameter = {
-      upvotes: (a: ProductRequests[number], b: ProductRequests[number]) => {
-        if (sort.order === 'DESC') {
-          return a.upvotes < b.upvotes ? 1 : -1;
-        }
-
-        return a.upvotes > b.upvotes ? 1 : -1;
-      },
-      comments: (a: ProductRequests[number], b: ProductRequests[number]) => {
-        if (sort.order === 'DESC') {
-          return Number(a.comments?.length) < Number(b.comments?.length)
-            ? 1
-            : -1;
-        }
-
-        return Number(a.comments?.length) > Number(b.comments?.length) ? 1 : -1;
-      },
-    };
-
-    return sortByParameter[sort.value](a, b);
   }
 }
