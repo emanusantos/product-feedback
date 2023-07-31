@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/services/api.service';
 
 import * as mock from 'assets/data.json';
 import { Option } from 'src/app/types/option';
+import { Subscription } from 'rxjs';
 
 type ProductRequests = typeof mock.productRequests;
 
@@ -12,8 +13,10 @@ type ProductRequests = typeof mock.productRequests;
   styleUrls: ['./home.component.sass'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  data: ProductRequests = [];
+  dataSubscription!: Subscription;
+  filteredSubscription!: Subscription;
 
+  data: ProductRequests = [];
   filteredData: ProductRequests = [];
 
   constructor(private apiService: ApiService) {}
@@ -21,18 +24,23 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     document.body.className = 'home';
 
-    this.apiService.currentData.subscribe((data) => {
+    this.dataSubscription = this.apiService.currentData.subscribe((data) => {
       this.data = data.productRequests.filter(
         (item) => item.status === 'suggestion'
       );
     });
 
-    this.apiService.filteredData.subscribe((data) => {
-      this.filteredData = data.filter((item) => item.status === 'suggestion');
-    });
+    this.filteredSubscription = this.apiService.filteredData.subscribe(
+      (data) => {
+        this.filteredData = data.filter((item) => item.status === 'suggestion');
+      }
+    );
   }
 
   ngOnDestroy(): void {
+    this.dataSubscription.unsubscribe();
+    this.filteredSubscription.unsubscribe();
+
     document.body.className = '';
   }
 }
