@@ -1,4 +1,4 @@
-<div class="container">
-    <img src="../../../assets/shared/icon-arrow-up-purple.svg">
-    <b>{{ numberOfUpvotes }}</b>
+<div class="container" [ngStyle]="isUpvoted ? { 'background-color': '#4661E6' } : {}" (click)="upvote()">
+    <img [attr.src]="getIcon()">
+    <b [ngStyle]="isUpvoted ? { 'color': '#fff' } : {}">{{ numberOfUpvotes }}</b>
 </div>

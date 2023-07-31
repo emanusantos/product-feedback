@@ -8,7 +8,9 @@ import * as mock from 'assets/data.json';
   styleUrls: ['./feedback.component.sass'],
 })
 export class FeedbackComponent {
-  @Input() request: (typeof mock.productRequests)[number] = {
+  @Input() request: (typeof mock.productRequests)[number] & {
+    isUpvoted?: boolean;
+  } = {
     id: 0,
     title: '',
     description: '',
@@ -16,5 +18,6 @@ export class FeedbackComponent {
     status: '',
     upvotes: 0,
     comments: [],
+    isUpvoted: false,
   };
 }

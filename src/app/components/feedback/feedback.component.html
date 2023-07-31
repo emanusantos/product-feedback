@@ -1,5 +1,5 @@
 <article>
-    <app-upvotes [numberOfUpvotes]="request.upvotes" />
+    <app-upvotes [numberOfUpvotes]="request.upvotes" [isUpvoted]="!!request.isUpvoted" [id]="request.id" />
 
     <section>
         <h3>{{ request.title }}</h3>

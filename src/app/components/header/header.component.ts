@@ -9,9 +9,4 @@ import { Option } from 'src/app/types/option';
 })
 export class HeaderComponent {
   @Input() totalItems = 0;
-  @Output() provideSort = new EventEmitter<Option>();
-
-  forwardSort(option: Option) {
-    this.provideSort.emit(option);
-  }
 }
