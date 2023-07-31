@@ -23,6 +23,8 @@ export class FeedbackDetailComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    document.body.className = 'details';
+
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
 
     this.apiService
