@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 
 import * as mock from 'assets/data.json';
@@ -11,7 +11,7 @@ type ProductRequests = typeof mock.productRequests;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.sass'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   data: ProductRequests = [];
 
   filteredData: ProductRequests = [];
@@ -30,5 +30,9 @@ export class HomeComponent implements OnInit {
     this.apiService.filteredData.subscribe((data) => {
       this.filteredData = data.filter((item) => item.status === 'suggestion');
     });
+  }
+
+  ngOnDestroy(): void {
+    document.body.className = '';
   }
 }

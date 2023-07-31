@@ -1,4 +1,4 @@
-<article>
+<article [routerLink]="['/feedback', request.id]">
     <app-upvotes [numberOfUpvotes]="request.upvotes" [isUpvoted]="!!request.isUpvoted" [id]="request.id" />
 
     <section>
