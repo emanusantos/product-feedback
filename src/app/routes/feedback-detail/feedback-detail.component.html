@@ -20,10 +20,14 @@
   <footer class="comments">
     <h3>Add Comment</h3>
 
-    <textarea maxlength="250" placeholder="Type your comment here"></textarea>
+    <textarea
+      maxlength="250"
+      placeholder="Type your comment here"
+      (keyup)="handleTextChange($event)"
+    ></textarea>
 
     <div class="footer-row">
-      <p class="characters">250 Characters left</p>
+      <p class="characters">{{ 250 - text.length }} Characters left</p>
       <app-button [label]="'Post Comment'" />
     </div>
   </footer>

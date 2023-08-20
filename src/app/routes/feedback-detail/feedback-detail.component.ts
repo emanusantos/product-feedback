@@ -23,6 +23,7 @@ export class FeedbackDetailComponent implements OnInit {
   };
 
   numberOfComments = 0;
+  text = '';
 
   ngOnInit(): void {
     document.body.className = 'details';
@@ -47,5 +48,11 @@ export class FeedbackDetailComponent implements OnInit {
         this.numberOfComments = numberOfCommentsCount;
       }
     });
+  }
+
+  handleTextChange(event: KeyboardEvent) {
+    const target = event.target as HTMLInputElement;
+
+    this.text = target.value;
   }
 }
