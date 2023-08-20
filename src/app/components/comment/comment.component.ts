@@ -7,8 +7,7 @@ import { Comment } from 'src/app/types/comment';
   styleUrls: ['./comment.component.sass'],
 })
 export class CommentComponent {
-  @Input() comment: Comment = {
-    id: 0,
+  @Input() comment: Omit<Comment, 'id'> = {
     content: '',
     user: {
       image: '',

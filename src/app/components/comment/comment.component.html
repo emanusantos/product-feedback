@@ -1,6 +1,9 @@
 <div>
   <div class="container">
-    <img class="avatar" [attr.src]="comment.user.image" />
+    <div>
+      <img class="avatar" [attr.src]="comment.user.image" />
+      <div class="trail" *ngIf="!!comment.replies"></div>
+    </div>
 
     <div class="inner-content">
       <div class="header">
@@ -15,6 +18,8 @@
       <p class="description">
         {{ comment.content }}
       </p>
+
+      <app-comment *ngIf="!!comment.replies" [comment]="comment.replies[0]" />
     </div>
   </div>
 
