@@ -16,5 +16,7 @@ export class CommentComponent {
     },
   };
 
+  @Input() mention = '';
+
   @Input() hasSeparator = false;
 }

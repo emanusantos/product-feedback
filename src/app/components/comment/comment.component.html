@@ -2,7 +2,7 @@
   <div class="container">
     <div>
       <img class="avatar" [attr.src]="comment.user.image" />
-      <div class="trail" *ngIf="!!comment.replies"></div>
+      <!-- TODO: Find out how to calculate trail height <div class="trail" *ngIf="!!comment.replies"></div> -->
     </div>
 
     <div class="inner-content">
@@ -16,10 +16,17 @@
       </div>
 
       <p class="description">
-        {{ comment.content }}
+        <span class="mention" *ngIf="!!mention">@{{ mention }} </span
+        >{{ comment.content }}
       </p>
 
-      <app-comment *ngIf="!!comment.replies" [comment]="comment.replies[0]" />
+      <ng-container *ngIf="!!comment.replies">
+        <app-comment
+          *ngFor="let reply of comment.replies"
+          [comment]="reply"
+          [mention]="reply.replyingTo"
+        />
+      </ng-container>
     </div>
   </div>
 
