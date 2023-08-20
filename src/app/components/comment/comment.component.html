@@ -1,25 +1,22 @@
-<div class="wrapper">
+<div>
   <div class="container">
-    <div class="avatar"></div>
+    <img class="avatar" [attr.src]="comment.user.image" />
 
     <div class="inner-content">
       <div class="header">
         <div class="title">
-          <h4>Elijah Moss</h4>
-          <p class="username">@hexagon.bestagon</p>
+          <h4>{{ comment.user.name }}</h4>
+          <p class="username">@{{ comment.user.username }}</p>
         </div>
 
         <p class="reply">Reply</p>
       </div>
 
       <p class="description">
-        Also, please allow styles to be applied based on system preferences. I
-        would love to be able to browse Frontend Mentor in the evening after my
-        device’s dark mode turns on without the bright background it currently
-        has.
+        {{ comment.content }}
       </p>
     </div>
   </div>
 
-  <hr />
+  <hr *ngIf="hasSeparator" />
 </div>

@@ -1,10 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Comment } from 'src/app/types/comment';
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
-  styleUrls: ['./comment.component.sass']
+  styleUrls: ['./comment.component.sass'],
 })
 export class CommentComponent {
+  @Input() comment: Comment = {
+    id: 0,
+    content: '',
+    user: {
+      image: '',
+      name: '',
+      username: '',
+    },
+  };
 
+  @Input() hasSeparator = false;
 }
