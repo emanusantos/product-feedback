@@ -15,6 +15,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { EmptyComponent } from './components/empty/empty.component';
 import { BackComponent } from './components/back/back.component';
 import { FeedbackDetailComponent } from './routes/feedback-detail/feedback-detail.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FeedbackDetailComponent } from './routes/feedback-detail/feedback-detai
     EmptyComponent,
     BackComponent,
     FeedbackDetailComponent,
+    CommentComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

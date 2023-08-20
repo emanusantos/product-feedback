@@ -1,14 +1,21 @@
 <article [routerLink]="['/feedback', request.id]">
-    <app-upvotes [numberOfUpvotes]="request.upvotes" [isUpvoted]="!!request.isUpvoted" [id]="request.id" />
+  <app-upvotes
+    [numberOfUpvotes]="request.upvotes"
+    [isUpvoted]="!!request.isUpvoted"
+    [id]="request.id"
+  />
 
-    <section>
-        <h3>{{ request.title }}</h3>
-        <p>{{ request.description }}</p>
-        <app-tag [title]="request.category" [ngStyle]="{ 'pointer-events': 'none' }" />
-    </section>
+  <section>
+    <h3>{{ request.title }}</h3>
+    <p>{{ request.description }}</p>
+    <app-tag
+      [title]="request.category"
+      [ngStyle]="{ 'pointer-events': 'none' }"
+    />
+  </section>
 
-    <div class="comments">
-        <img src="../../../assets/shared/icon-comments.svg">
-        <b>{{ request.comments ? request.comments.length : 0 }}</b>
-    </div>
+  <div class="comments">
+    <img src="../../../assets/shared/icon-comments.svg" />
+    <b>{{ request.comments ? request.comments.length : 0 }}</b>
+  </div>
 </article>

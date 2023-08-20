@@ -27,6 +27,8 @@ export class FeedbackDetailComponent implements OnInit {
 
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
 
+    console.log({ id });
+
     this.apiService
       .getFeedback(id)
       .subscribe((feedback) => (this.feedback = feedback));

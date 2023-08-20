@@ -1,8 +1,13 @@
 <div class="container">
-    <header>
-        <app-back />
-        <app-button [label]="'Edit Feedback'" [color]="'#4661E6'" />
-    </header>
+  <header>
+    <app-back />
+    <app-button [label]="'Edit Feedback'" [color]="'#4661E6'" />
+  </header>
 
-    <app-feedback [request]="feedback" />
+  <app-feedback [request]="feedback" />
+
+  <div class="comments">
+    <h3>4 Comments</h3>
+    <app-comment />
+  </div>
 </div>
