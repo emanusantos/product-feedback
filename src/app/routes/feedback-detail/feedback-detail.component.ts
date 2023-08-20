@@ -29,8 +29,8 @@ export class FeedbackDetailComponent implements OnInit {
 
     console.log({ id });
 
-    this.apiService
-      .getFeedback(id)
-      .subscribe((feedback) => (this.feedback = feedback));
+    this.apiService.getFeedback(id).subscribe((feedback) => {
+      if (feedback) this.feedback = feedback;
+    });
   }
 }
