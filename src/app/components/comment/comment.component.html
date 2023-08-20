@@ -12,13 +12,21 @@
           <p class="username">@{{ comment.user.username }}</p>
         </div>
 
-        <p class="reply">Reply</p>
+        <p class="reply" (click)="toggleReplyForm()">Reply</p>
       </div>
 
       <p class="description">
         <span class="mention" *ngIf="!!mention">@{{ mention }} </span
         >{{ comment.content }}
       </p>
+
+      <div class="reply-form" *ngIf="isReplyFormVisible">
+        <textarea
+          maxlength="250"
+          placeholder="Type your comment here"
+        ></textarea>
+        <app-button label="Post Reply" />
+      </div>
 
       <ng-container *ngIf="!!comment.replies">
         <app-comment

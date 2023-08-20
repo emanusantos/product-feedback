@@ -19,4 +19,9 @@ export class CommentComponent {
   @Input() mention = '';
 
   @Input() hasSeparator = false;
+  @Input() isReplyFormVisible = false;
+
+  toggleReplyForm() {
+    this.isReplyFormVisible = !this.isReplyFormVisible;
+  }
 }

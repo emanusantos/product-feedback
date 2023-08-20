@@ -39,6 +39,12 @@
     color: $primary
     font-size: 13px
     font-weight: 600
+    cursor: pointer
+    user-select: none
+
+    &:hover
+        text-decoration: underline
+
 
 .description
     color: $grayish-blue
@@ -49,6 +55,30 @@
     color: $secondary
     font-size: 15px
     font-weight: 700
+
+.reply-form
+    width: 100%
+    display: flex
+    gap: 1rem
+
+textarea
+    width: 100%
+    min-height: 5rem
+    padding: 1rem 1.5rem
+    background-color: $ice-white
+    resize: none
+    border: none
+    border-radius: 5px
+    font-family: Jost
+    font-size: 15px
+    font-weight: 400
+    overflow: hidden
+    
+textarea::placeholder
+    color: #8C92B390
+    font-family: Jost
+    font-size: 15px
+    font-weight: 400
 
 hr
     background-color: $dark-blue-alt

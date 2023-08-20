@@ -80,10 +80,8 @@ export class ApiService {
   }
 
   getFeedback(id: number) {
-    return this.dataSource.pipe(
-      map(
-        (data) => data.productRequests.find((feedback) => feedback.id === id)!
-      )
+    return this.filteredDataSource.pipe(
+      map((data) => data.find((feedback) => feedback.id === id)!)
     );
   }
 }
