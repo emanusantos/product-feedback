@@ -7,7 +7,7 @@
   <app-feedback [request]="feedback" />
 
   <div class="comments">
-    <h3>{{ feedback.comments ? feedback.comments.length : 0 }} Comments</h3>
+    <h3>{{ numberOfComments }} Comments</h3>
     <app-comment
       *ngFor="let comment of feedback.comments; let index = index"
       [comment]="comment"
@@ -16,4 +16,15 @@
       "
     />
   </div>
+
+  <footer class="comments">
+    <h3>Add Comment</h3>
+
+    <textarea maxlength="250" placeholder="Type your comment here"></textarea>
+
+    <div class="footer-row">
+      <p class="characters">250 Characters left</p>
+      <app-button [label]="'Post Comment'" />
+    </div>
+  </footer>
 </div>
