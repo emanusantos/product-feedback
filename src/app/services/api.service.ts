@@ -78,4 +78,12 @@ export class ApiService {
 
     this.filteredDataSource.next(data);
   }
+
+  getFeedback(id: number) {
+    return this.dataSource.pipe(
+      map(
+        (data) => data.productRequests.find((feedback) => feedback.id === id)!
+      )
+    );
+  }
 }

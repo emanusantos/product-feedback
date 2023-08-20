@@ -1,0 +1,34 @@
+<div>
+  <div class="container">
+    <div>
+      <img class="avatar" [attr.src]="comment.user.image" />
+      <!-- TODO: Find out how to calculate trail height <div class="trail" *ngIf="!!comment.replies"></div> -->
+    </div>
+
+    <div class="inner-content">
+      <div class="header">
+        <div class="title">
+          <h4>{{ comment.user.name }}</h4>
+          <p class="username">@{{ comment.user.username }}</p>
+        </div>
+
+        <p class="reply">Reply</p>
+      </div>
+
+      <p class="description">
+        <span class="mention" *ngIf="!!mention">@{{ mention }} </span
+        >{{ comment.content }}
+      </p>
+
+      <ng-container *ngIf="!!comment.replies">
+        <app-comment
+          *ngFor="let reply of comment.replies"
+          [comment]="reply"
+          [mention]="reply.replyingTo"
+        />
+      </ng-container>
+    </div>
+  </div>
+
+  <hr *ngIf="hasSeparator" />
+</div>
