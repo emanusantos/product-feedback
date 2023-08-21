@@ -12,7 +12,7 @@
           <p class="username">@{{ comment.user.username }}</p>
         </div>
 
-        <p class="reply">Reply</p>
+        <p class="reply" (click)="toggleReplyForm()">Reply</p>
       </div>
 
       <p class="description">
@@ -20,9 +20,23 @@
         >{{ comment.content }}
       </p>
 
+      <div class="reply-form" *ngIf="isReplyFormVisible">
+        <textarea
+          maxlength="250"
+          placeholder="Type your reply here"
+          [value]="replyValue"
+          (keyup)="changeReplyValue($event)"
+        ></textarea>
+        <app-button
+          label="Post Reply"
+          (click)="reply(comment.id!, comment.user.username)"
+        />
+      </div>
+
       <ng-container *ngIf="!!comment.replies">
         <app-comment
           *ngFor="let reply of comment.replies"
+          [parentComment]="comment.id"
           [comment]="reply"
           [mention]="reply.replyingTo"
         />
