@@ -23,14 +23,20 @@
       <div class="reply-form" *ngIf="isReplyFormVisible">
         <textarea
           maxlength="250"
-          placeholder="Type your comment here"
+          placeholder="Type your reply here"
+          [value]="replyValue"
+          (keyup)="changeReplyValue($event)"
         ></textarea>
-        <app-button label="Post Reply" />
+        <app-button
+          label="Post Reply"
+          (click)="reply(comment.id!, comment.user.username)"
+        />
       </div>
 
       <ng-container *ngIf="!!comment.replies">
         <app-comment
           *ngFor="let reply of comment.replies"
+          [parentComment]="comment.id"
           [comment]="reply"
           [mention]="reply.replyingTo"
         />

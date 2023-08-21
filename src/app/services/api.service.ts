@@ -7,6 +7,7 @@ import * as mock from 'assets/data.json';
 import { Option } from '../types/option';
 
 import { handleFilter, handleSort } from '../helpers/array-utils.helper';
+import { CommentReply } from '../types/comment';
 
 type ProductRequests = Array<
   (typeof mock.productRequests)[number] & { isUpvoted?: boolean }
@@ -83,5 +84,68 @@ export class ApiService {
     return this.filteredDataSource.pipe(
       map((data) => data.find((feedback) => feedback.id === id)!)
     );
+  }
+
+  comment(postId: number, content: string) {
+    const user = this.dataSource.getValue().currentUser;
+    const data = this.filteredDataSource.getValue();
+
+    const itemIndex = data.findIndex((item) => item.id === postId);
+
+    if (!data[itemIndex].comments) {
+      data[itemIndex].comments = [
+        {
+          id: 10,
+          user,
+          content,
+        },
+      ];
+    } else {
+      const comments = data[itemIndex].comments!;
+      const lastCommentIndex = comments[comments.length - 1];
+
+      data[itemIndex].comments = [
+        ...data[itemIndex].comments!,
+        {
+          id: lastCommentIndex.id + 1,
+          user,
+          content,
+        },
+      ];
+    }
+
+    this.filteredDataSource.next(data);
+  }
+
+  reply({
+    postId,
+    commentId,
+    input,
+  }: {
+    postId: number;
+    commentId: number;
+    input: Omit<CommentReply, 'user'>;
+  }) {
+    const user = this.dataSource.getValue().currentUser;
+    const data = this.filteredDataSource.getValue();
+
+    const itemIndex = data.findIndex((item) => item.id === postId);
+
+    if (!data[itemIndex].comments) return;
+
+    const commentIndex = data[itemIndex].comments!.findIndex(
+      (item) => item.id === commentId
+    );
+
+    if (!data[itemIndex].comments![commentIndex].replies) {
+      data[itemIndex].comments![commentIndex].replies = [{ ...input, user }];
+    } else {
+      data[itemIndex].comments![commentIndex].replies = [
+        ...data[itemIndex].comments![commentIndex].replies!,
+        { ...input, user },
+      ];
+    }
+
+    this.filteredDataSource.next(data);
   }
 }

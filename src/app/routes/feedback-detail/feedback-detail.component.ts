@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { Feedback } from 'src/app/types/option';
 
@@ -53,5 +53,13 @@ export class FeedbackDetailComponent implements OnInit {
     const target = event.target as HTMLInputElement;
 
     this.text = target.value;
+  }
+
+  comment() {
+    const postId = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+
+    this.apiService.comment(postId, this.text);
+
+    this.text = '';
   }
 }
