@@ -1,8 +1,8 @@
 <div>
   <div class="container">
-    <div>
+    <div class="trail-wrapper">
       <img class="avatar" [attr.src]="comment.user.image" />
-      <!-- TODO: Find out how to calculate trail height <div class="trail" *ngIf="!!comment.replies"></div> -->
+      <div class="trail" *ngIf="!!comment.replies"></div>
     </div>
 
     <div class="inner-content">
