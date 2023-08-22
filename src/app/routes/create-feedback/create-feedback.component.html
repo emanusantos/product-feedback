@@ -8,17 +8,33 @@
     <h1>Create New Feedback</h1>
 
     <form class="form">
-      <app-form-item>
+      <app-form-item
+        [title]="'Feedback Title'"
+        [description]="'Add a short, descriptive headline'"
+      >
         <input />
       </app-form-item>
 
-      <app-form-item>
+      <app-form-item
+        [title]="'Category'"
+        [description]="'Choose a category for your feedback'"
+      >
         <input />
       </app-form-item>
 
-      <app-form-item>
+      <app-form-item
+        [title]="'Feedback Detail'"
+        [description]="
+          'Include any specific comments on what should be improved, added, etc.'
+        "
+      >
         <input />
       </app-form-item>
     </form>
+
+    <footer>
+      <app-button [label]="'Cancel'" [color]="'#3A4374'"></app-button>
+      <app-button [label]="'Add Feedback'"></app-button>
+    </footer>
   </div>
 </div>
