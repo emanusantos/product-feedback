@@ -1,4 +1,4 @@
-<form class="form" #createFeedbackForm="ngForm">
+<form class="form" #createFeedbackForm="ngForm" (ngSubmit)="onSubmit()">
   <app-form-item
     [title]="'Feedback Title'"
     [description]="'Add a short, descriptive headline'"
@@ -55,4 +55,6 @@
       [(ngModel)]="model.description"
     ></textarea>
   </app-form-item>
+
+  <ng-content></ng-content>
 </form>

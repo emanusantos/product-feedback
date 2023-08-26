@@ -7,14 +7,15 @@
     <img
       class="new-feedback"
       src="../../../assets/shared/icon-new-feedback.svg"
+      alt="An plus icon referencing to create a new feedback"
     />
     <h1>Create New Feedback</h1>
 
-    <app-create-feedback-form></app-create-feedback-form>
-
-    <footer>
-      <app-button [label]="'Cancel'" [color]="'#3A4374'"></app-button>
-      <app-button [label]="'Add Feedback'"></app-button>
-    </footer>
+    <app-create-feedback-form>
+      <footer>
+        <app-button [label]="'Cancel'" [color]="'#3A4374'"></app-button>
+        <app-button [label]="'Add Feedback'" [type]="'submit'"></app-button>
+      </footer>
+    </app-create-feedback-form>
   </div>
 </div>

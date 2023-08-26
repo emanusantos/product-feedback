@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class ButtonComponent {
   @Input() label = '';
   @Input() color?: string;
+  @Input() type?: 'button' | 'submit' = 'button';
 }

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { categoriesWithoutAll } from 'src/app/constants/categories';
 import { Feedback } from 'src/app/models/feedback.model';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-create-feedback-form',
@@ -12,6 +14,11 @@ export class CreateFeedbackFormComponent {
   categories = categoriesWithoutAll;
 
   model = new Feedback('', this.categories[0], '');
+
+  constructor(
+    private readonly apiService: ApiService,
+    private router: Router
+  ) {}
 
   toggleSelect() {
     this.isSelectVisible = !this.isSelectVisible;
@@ -25,5 +32,11 @@ export class CreateFeedbackFormComponent {
 
   selectCategory(category: string) {
     this.model.category = category;
+  }
+
+  onSubmit() {
+    this.apiService.addFeedback(this.model);
+
+    this.router.navigate(['/']);
   }
 }

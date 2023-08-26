@@ -8,6 +8,7 @@ import { Option } from '../types/option';
 
 import { handleFilter, handleSort } from '../helpers/array-utils.helper';
 import { CommentReply } from '../types/comment';
+import { Feedback } from '../models/feedback.model';
 
 type ProductRequests = Array<
   (typeof mock.productRequests)[number] & { isUpvoted?: boolean }
@@ -145,6 +146,27 @@ export class ApiService {
         { ...input, user },
       ];
     }
+
+    this.filteredDataSource.next(data);
+  }
+
+  addFeedback(feedback: Feedback) {
+    let data = this.filteredDataSource.getValue();
+
+    const lastFeedback = data[data.length - 1];
+
+    data = [
+      ...data,
+      {
+        id: lastFeedback.id + 1,
+        category: feedback.category,
+        description: feedback.description,
+        status: 'suggestion',
+        title: feedback.title,
+        upvotes: 0,
+        comments: [],
+      },
+    ];
 
     this.filteredDataSource.next(data);
   }
