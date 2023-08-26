@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { categories } from 'src/app/constants/categories';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./menu.component.sass'],
 })
 export class MenuComponent {
-  categories = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature'];
+  categories = categories;
   selectedCategory = 'All';
 
   constructor(private apiService: ApiService) {}

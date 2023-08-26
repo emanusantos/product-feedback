@@ -21,7 +21,7 @@ img
     gap: 1.5rem
     margin-top: 2.5rem
 
-input
+input, .select
     width: 100%
     min-height: 3rem
     background-color: $ice-white
@@ -34,3 +34,52 @@ footer
     justify-content: flex-end
     margin-top: 2rem
     gap: 1rem
+
+.select
+    position: relative
+    display: flex
+    align-items: center
+    padding: 0 1.5rem
+    cursor: pointer
+
+
+.label
+    color: $dark-blue-alt
+    font-size: 15px
+    font-weight: 400
+
+.arrow
+    position: absolute
+    top: auto
+    bottom: auto
+    right: 1.5rem
+    pointer-events: none
+
+.content
+    width: 100%
+    position: absolute
+    top: 4rem
+    left: 0
+    background-color: $white
+    border-radius: 10px
+    box-shadow: 0px 10px 40px -7px rgba(55, 63, 104, 0.35)
+
+.body-1
+    color: $grayish-blue
+    white-space: nowrap
+
+.option
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: .75rem 1.5rem
+    cursor: pointer
+
+    &:hover
+        p
+            color: $secondary
+
+hr
+    background-color: $dark-blue-alt
+    height: 1px
+    opacity: .15
