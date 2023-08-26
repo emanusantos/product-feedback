@@ -93,7 +93,7 @@ export class ApiService {
 
     const itemIndex = data.findIndex((item) => item.id === postId);
 
-    if (!data[itemIndex].comments) {
+    if (!data[itemIndex].comments || !data[itemIndex].comments!.length) {
       data[itemIndex].comments = [
         {
           id: 10,
@@ -156,7 +156,6 @@ export class ApiService {
     const lastFeedback = data[data.length - 1];
 
     data = [
-      ...data,
       {
         id: lastFeedback.id + 1,
         category: feedback.category,
@@ -166,6 +165,7 @@ export class ApiService {
         upvotes: 0,
         comments: [],
       },
+      ...data,
     ];
 
     this.filteredDataSource.next(data);
