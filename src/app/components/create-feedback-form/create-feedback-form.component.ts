@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { categoriesWithoutAll } from 'src/app/constants/categories';
+import { Feedback } from 'src/app/models/feedback.model';
 
 @Component({
   selector: 'app-create-feedback-form',
@@ -7,9 +8,10 @@ import { categoriesWithoutAll } from 'src/app/constants/categories';
   styleUrls: ['./create-feedback-form.component.sass'],
 })
 export class CreateFeedbackFormComponent {
-  isSelectVisible = true;
+  isSelectVisible = false;
   categories = categoriesWithoutAll;
-  selectedCategory = this.categories[0];
+
+  model = new Feedback('', this.categories[0], '');
 
   toggleSelect() {
     this.isSelectVisible = !this.isSelectVisible;
@@ -22,6 +24,6 @@ export class CreateFeedbackFormComponent {
   }
 
   selectCategory(category: string) {
-    this.selectedCategory = category;
+    this.model.category = category;
   }
 }

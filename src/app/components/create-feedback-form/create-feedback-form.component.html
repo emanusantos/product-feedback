@@ -1,9 +1,15 @@
-<form class="form">
+<form class="form" #createFeedbackForm="ngForm">
   <app-form-item
     [title]="'Feedback Title'"
     [description]="'Add a short, descriptive headline'"
   >
-    <input />
+    <input
+      type="text"
+      id="title"
+      name="title"
+      [(ngModel)]="model.title"
+      required
+    />
   </app-form-item>
 
   <app-form-item
@@ -11,9 +17,13 @@
     [description]="'Choose a category for your feedback'"
   >
     <div class="select" (click)="toggleSelect()">
-      <p class="label">{{ selectedCategory }}</p>
+      <p class="label">{{ model.category }}</p>
 
-      <img class="arrow" [attr.src]="getIcon()" />
+      <img
+        class="arrow"
+        [attr.src]="getIcon()"
+        alt="The arrow down icon when the select is in the dismissed state"
+      />
 
       <div class="content" *ngIf="isSelectVisible">
         <ng-container *ngFor="let category of categories; let index = index">
@@ -22,7 +32,7 @@
             <img
               class="checkmark"
               src="../../../assets/shared/icon-check.svg"
-              *ngIf="category === selectedCategory"
+              *ngIf="category === model.category"
               alt="A checkmark icon"
             />
           </div>
@@ -39,6 +49,10 @@
       'Include any specific comments on what should be improved, added, etc.'
     "
   >
-    <textarea maxlength="250"></textarea>
+    <textarea
+      maxlength="250"
+      name="description"
+      [(ngModel)]="model.description"
+    ></textarea>
   </app-form-item>
 </form>
