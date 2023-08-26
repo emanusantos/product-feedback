@@ -1,8 +1,8 @@
 <header>
-    <div class="left-content">
-        <img src="../../../assets/shared/icon-bulb.svg">
-        <p>{{ totalItems }} Suggestions</p>
-        <app-select />
-    </div>
-    <app-button [label]="'+ Add Feedback'" />
+  <div class="left-content">
+    <img src="../../../assets/shared/icon-bulb.svg" />
+    <p>{{ totalItems }} Suggestions</p>
+    <app-select />
+  </div>
+  <app-button [label]="'+ Add Feedback'" [routerLink]="'create'" />
 </header>

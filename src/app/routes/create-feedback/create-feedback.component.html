@@ -1,0 +1,65 @@
+<div class="container">
+  <header>
+    <app-back />
+  </header>
+
+  <div class="main-content">
+    <img
+      class="new-feedback"
+      src="../../../assets/shared/icon-new-feedback.svg"
+    />
+    <h1>Create New Feedback</h1>
+
+    <form class="form">
+      <app-form-item
+        [title]="'Feedback Title'"
+        [description]="'Add a short, descriptive headline'"
+      >
+        <input />
+      </app-form-item>
+
+      <app-form-item
+        [title]="'Category'"
+        [description]="'Choose a category for your feedback'"
+      >
+        <div class="select" (click)="toggleSelect()">
+          <p class="label">{{ selectedCategory }}</p>
+
+          <img class="arrow" [attr.src]="getIcon()" />
+
+          <div class="content" *ngIf="isSelectVisible">
+            <ng-container
+              *ngFor="let category of categories; let index = index"
+            >
+              <div class="option" (click)="selectCategory(category)">
+                <p class="body-1">{{ category }}</p>
+                <img
+                  class="checkmark"
+                  src="../../../assets/shared/icon-check.svg"
+                  *ngIf="category === selectedCategory"
+                  alt="A checkmark icon"
+                />
+              </div>
+
+              <hr *ngIf="index !== categories.length - 1" />
+            </ng-container>
+          </div>
+        </div>
+      </app-form-item>
+
+      <app-form-item
+        [title]="'Feedback Detail'"
+        [description]="
+          'Include any specific comments on what should be improved, added, etc.'
+        "
+      >
+        <textarea maxlength="250"></textarea>
+      </app-form-item>
+    </form>
+
+    <footer>
+      <app-button [label]="'Cancel'" [color]="'#3A4374'"></app-button>
+      <app-button [label]="'Add Feedback'"></app-button>
+    </footer>
+  </div>
+</div>
