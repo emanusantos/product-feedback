@@ -8,6 +8,7 @@ import { Option } from '../types/option';
 
 import { handleFilter, handleSort } from '../helpers/array-utils.helper';
 import { CommentReply } from '../types/comment';
+import { Feedback } from '../models/feedback.model';
 
 type ProductRequests = Array<
   (typeof mock.productRequests)[number] & { isUpvoted?: boolean }
@@ -92,7 +93,7 @@ export class ApiService {
 
     const itemIndex = data.findIndex((item) => item.id === postId);
 
-    if (!data[itemIndex].comments) {
+    if (!data[itemIndex].comments || !data[itemIndex].comments!.length) {
       data[itemIndex].comments = [
         {
           id: 10,
@@ -145,6 +146,27 @@ export class ApiService {
         { ...input, user },
       ];
     }
+
+    this.filteredDataSource.next(data);
+  }
+
+  addFeedback(feedback: Feedback) {
+    let data = this.filteredDataSource.getValue();
+
+    const lastFeedback = data[data.length - 1];
+
+    data = [
+      {
+        id: lastFeedback.id + 1,
+        category: feedback.category,
+        description: feedback.description,
+        status: 'suggestion',
+        title: feedback.title,
+        upvotes: 0,
+        comments: [],
+      },
+      ...data,
+    ];
 
     this.filteredDataSource.next(data);
   }

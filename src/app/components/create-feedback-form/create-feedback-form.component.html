@@ -1,0 +1,60 @@
+<form class="form" #createFeedbackForm="ngForm" (ngSubmit)="onSubmit()">
+  <app-form-item
+    [title]="'Feedback Title'"
+    [description]="'Add a short, descriptive headline'"
+  >
+    <input
+      type="text"
+      id="title"
+      name="title"
+      [(ngModel)]="model.title"
+      required
+    />
+  </app-form-item>
+
+  <app-form-item
+    [title]="'Category'"
+    [description]="'Choose a category for your feedback'"
+  >
+    <div class="select" (click)="toggleSelect()">
+      <p class="label">{{ model.category }}</p>
+
+      <img
+        class="arrow"
+        [attr.src]="getIcon()"
+        alt="The arrow down icon when the select is in the dismissed state"
+      />
+
+      <div class="content" *ngIf="isSelectVisible">
+        <ng-container *ngFor="let category of categories; let index = index">
+          <div class="option" (click)="selectCategory(category)">
+            <p class="body-1">{{ category }}</p>
+            <img
+              class="checkmark"
+              src="../../../assets/shared/icon-check.svg"
+              *ngIf="category === model.category"
+              alt="A checkmark icon"
+            />
+          </div>
+
+          <hr *ngIf="index !== categories.length - 1" />
+        </ng-container>
+      </div>
+    </div>
+  </app-form-item>
+
+  <app-form-item
+    [title]="'Feedback Detail'"
+    [description]="
+      'Include any specific comments on what should be improved, added, etc.'
+    "
+  >
+    <textarea
+      maxlength="250"
+      name="description"
+      [(ngModel)]="model.description"
+    ></textarea>
+  </app-form-item>
+
+  <ng-content></ng-content>
+</form>
