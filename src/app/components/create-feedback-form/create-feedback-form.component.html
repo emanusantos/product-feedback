@@ -16,7 +16,7 @@
     [title]="'Category'"
     [description]="'Choose a category for your feedback'"
   >
-    <div class="select" (click)="toggleSelect()">
+    <div class="select" (click)="toggleCategorySelect()">
       <p class="label">{{ model.category }}</p>
 
       <img
@@ -25,7 +25,7 @@
         alt="The arrow down icon when the select is in the dismissed state"
       />
 
-      <div class="content" *ngIf="isSelectVisible">
+      <div class="content" *ngIf="isCategorySelectVisible">
         <ng-container *ngFor="let category of categories; let index = index">
           <div class="option" (click)="selectCategory(category)">
             <p class="body-1">{{ category }}</p>
@@ -33,6 +33,38 @@
               class="checkmark"
               src="../../../assets/shared/icon-check.svg"
               *ngIf="category === model.category"
+              alt="A checkmark icon"
+            />
+          </div>
+
+          <hr *ngIf="index !== categories.length - 1" />
+        </ng-container>
+      </div>
+    </div>
+  </app-form-item>
+
+  <app-form-item
+    [title]="'Update Status'"
+    [description]="'Change feature state'"
+    [hidden]="!model.id"
+  >
+    <div class="select" (click)="toggleStatusSelect()">
+      <p class="label">{{ model.status }}</p>
+
+      <img
+        class="arrow"
+        [attr.src]="getIcon()"
+        alt="The arrow down icon when the select is in the dismissed state"
+      />
+
+      <div class="content" *ngIf="isStatusSelectVisible">
+        <ng-container *ngFor="let currentStatus of status; let index = index">
+          <div class="option" (click)="selectStatus(currentStatus)">
+            <p class="body-1">{{ currentStatus }}</p>
+            <img
+              class="checkmark"
+              src="../../../assets/shared/icon-check.svg"
+              *ngIf="currentStatus === model.status"
               alt="A checkmark icon"
             />
           </div>

@@ -1,7 +1,11 @@
 <div class="container">
   <header>
     <app-back />
-    <app-button [label]="'Edit Feedback'" [color]="'#4661E6'" />
+    <app-button
+      [label]="'Edit Feedback'"
+      [color]="'#4661E6'"
+      [routerLink]="['/feedback/edit', feedback.id]"
+    />
   </header>
 
   <app-feedback [request]="feedback" />
