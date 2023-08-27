@@ -170,4 +170,22 @@ export class ApiService {
 
     this.filteredDataSource.next(data);
   }
+
+  editFeedback(feedback: Feedback) {
+    if (!feedback.id) return;
+
+    let data = this.filteredDataSource.getValue();
+
+    const itemIndex = data.findIndex((item) => item.id === feedback.id);
+
+    data[itemIndex] = {
+      ...data[itemIndex],
+      title: feedback.title,
+      category: feedback.category.toLowerCase(),
+      status: feedback.status!.toLowerCase(),
+      description: feedback.description,
+    };
+
+    this.filteredDataSource.next(data);
+  }
 }
