@@ -20,6 +20,7 @@ import { CommentComponent } from './components/comment/comment.component';
 import { CreateFeedbackComponent } from './routes/create-feedback/create-feedback.component';
 import { FormItemComponent } from './components/form-item/form-item.component';
 import { CreateFeedbackFormComponent } from './components/create-feedback-form/create-feedback-form.component';
+import { EditFeedbackComponent } from './routes/edit-feedback/edit-feedback.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CreateFeedbackFormComponent } from './components/create-feedback-form/c
     CreateFeedbackComponent,
     FormItemComponent,
     CreateFeedbackFormComponent,
+    EditFeedbackComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

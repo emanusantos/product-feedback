@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { categoriesWithoutAll } from 'src/app/constants/categories';
 import { Feedback } from 'src/app/models/feedback.model';
@@ -13,7 +13,7 @@ export class CreateFeedbackFormComponent {
   isSelectVisible = false;
   categories = categoriesWithoutAll;
 
-  model = new Feedback('', this.categories[0], '');
+  @Input() model = new Feedback('', this.categories[0], '');
 
   constructor(
     private readonly apiService: ApiService,

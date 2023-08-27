@@ -1,0 +1,24 @@
+<div class="container">
+  <header>
+    <app-back />
+  </header>
+
+  <div class="main-content">
+    <img
+      class="new-feedback"
+      src="../../../assets/shared/icon-edit-feedback.svg"
+      alt="An plus icon referencing to create a new feedback"
+    />
+    <h1>Editing '{{ feedback.title }}'</h1>
+
+    <app-create-feedback-form [model]="feedback">
+      <footer>
+        <app-button [label]="'Delete'" [color]="'#D73737'"></app-button>
+        <div class="right-buttons">
+          <app-button [label]="'Cancel'" [color]="'#3A4374'"></app-button>
+          <app-button [label]="'Edit Feedback'" [type]="'submit'"></app-button>
+        </div>
+      </footer>
+    </app-create-feedback-form>
+  </div>
+</div>
