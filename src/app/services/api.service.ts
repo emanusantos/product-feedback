@@ -9,6 +9,7 @@ import { Option } from '../types/option';
 import { handleFilter, handleSort } from '../helpers/array-utils.helper';
 import { CommentReply } from '../types/comment';
 import { Feedback } from '../models/feedback.model';
+import { HttpClient } from '@angular/common/http';
 
 type ProductRequests = Array<
   (typeof mock.productRequests)[number] & { isUpvoted?: boolean }
@@ -36,8 +37,12 @@ export class ApiService {
   currentData = this.dataSource.asObservable();
   filteredData = this.filteredDataSource.asObservable();
 
-  constructor() {
+  constructor(private readonly client: HttpClient) {
     this.fetchJSON();
+  }
+
+  fetchFeedbacks() {
+    return this.client.get('http://localhost:8080/feedback');
   }
 
   fetchJSON() {
