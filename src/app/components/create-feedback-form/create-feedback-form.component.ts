@@ -46,13 +46,13 @@ export class CreateFeedbackFormComponent {
   }
 
   onSubmit() {
-    if (this.model.id) {
-      this.apiService.editFeedback(this.model);
-      this.router.navigate(['/feedback', this.model.id]);
-      return;
-    }
+    // if (this.model.id) {
+    //   this.apiService.editFeedback(this.model);
+    //   this.router.navigate(['/feedback', this.model.id]);
+    //   return;
+    // }
 
-    this.apiService.addFeedback(this.model);
+    // this.apiService.addFeedback(this.model);
 
     this.router.navigate(['/']);
   }

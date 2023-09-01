@@ -1,17 +1,17 @@
 <div class="container">
-    <app-menu />
+  <app-menu />
 
-    <div class="right-content">
-        <app-header [totalItems]="filteredData.length" />
+  <div class="right-content">
+    <app-header [totalItems]="data.length" />
 
-        <main>
-            <ng-container *ngIf="!!filteredData.length; else showThis">
-                <app-feedback *ngFor="let request of filteredData" [request]="request" />
-            </ng-container>
+    <main>
+      <ng-container *ngIf="!!data.length; else showThis">
+        <app-feedback *ngFor="let request of data" [request]="request" />
+      </ng-container>
 
-            <ng-template #showThis>
-                <app-empty />
-            </ng-template>
-        </main>
-    </div>
+      <ng-template #showThis>
+        <app-empty />
+      </ng-template>
+    </main>
+  </div>
 </div>

@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, delay, lastValueFrom, map, of } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  delay,
+  lastValueFrom,
+  map,
+  of,
+} from 'rxjs';
 
 import * as mock from 'assets/data.json';
 
@@ -8,8 +15,8 @@ import { Option } from '../types/option';
 
 import { handleFilter, handleSort } from '../helpers/array-utils.helper';
 import { CommentReply } from '../types/comment';
-import { Feedback } from '../models/feedback.model';
 import { HttpClient } from '@angular/common/http';
+import { Feedback } from '../types/feedback';
 
 type ProductRequests = Array<
   (typeof mock.productRequests)[number] & { isUpvoted?: boolean }
@@ -42,7 +49,7 @@ export class ApiService {
   }
 
   fetchFeedbacks() {
-    return this.client.get('http://localhost:8080/feedback');
+    return this.client.get<Array<Feedback>>('http://localhost:8080/feedback');
   }
 
   fetchJSON() {

@@ -13,7 +13,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
 
   data: Array<Feedback> = [];
-  filteredData: Array<Feedback> = [];
 
   constructor(private apiService: ApiService) {}
 
@@ -22,7 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.subscription = this.apiService.fetchFeedbacks().subscribe({
       next: (feedbacks) => {
-        console.log({ feedbacks });
+        this.data = feedbacks;
       },
       error: (err) => {
         console.log({ err });
