@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-
-import * as mock from 'assets/data.json';
+import { Feedback } from 'src/app/types/feedback';
 
 @Component({
   selector: 'app-feedback',
@@ -8,10 +7,10 @@ import * as mock from 'assets/data.json';
   styleUrls: ['./feedback.component.sass'],
 })
 export class FeedbackComponent {
-  @Input() request: (typeof mock.productRequests)[number] & {
+  @Input() request: Feedback & {
     isUpvoted?: boolean;
   } = {
-    id: 0,
+    id: '',
     title: '',
     description: '',
     category: '',

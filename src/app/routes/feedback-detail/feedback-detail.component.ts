@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-import { Feedback } from 'src/app/types/option';
+import { Feedback } from 'src/app/types/feedback';
 
 @Component({
   selector: 'app-feedback-detail',
@@ -12,7 +12,7 @@ export class FeedbackDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private apiService: ApiService) {}
 
   feedback: Feedback = {
-    id: 0,
+    id: '',
     category: '',
     description: '',
     status: '',
@@ -29,24 +29,24 @@ export class FeedbackDetailComponent implements OnInit {
 
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
 
-    this.apiService.getFeedback(id).subscribe((feedback) => {
-      if (feedback) {
-        let numberOfCommentsCount = 0;
+    // this.apiService.getFeedback(id).subscribe((feedback) => {
+    //   if (feedback) {
+    //     let numberOfCommentsCount = 0;
 
-        this.feedback = feedback;
-        if (feedback.comments) {
-          feedback.comments.forEach((comment) => {
-            numberOfCommentsCount++;
+    //     this.feedback = feedback;
+    //     if (feedback.comments) {
+    //       feedback.comments.forEach((comment) => {
+    //         numberOfCommentsCount++;
 
-            if (comment.replies)
-              numberOfCommentsCount =
-                numberOfCommentsCount + comment.replies.length;
-          });
-        }
+    //         if (comment.replies)
+    //           numberOfCommentsCount =
+    //             numberOfCommentsCount + comment.replies.length;
+    //       });
+    //     }
 
-        this.numberOfComments = numberOfCommentsCount;
-      }
-    });
+    //     this.numberOfComments = numberOfCommentsCount;
+    //   }
+    // });
   }
 
   handleTextChange(event: KeyboardEvent) {

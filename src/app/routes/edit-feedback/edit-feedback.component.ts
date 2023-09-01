@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-import { Feedback } from 'src/app/types/option';
+import { Feedback } from 'src/app/types/feedback';
 
 @Component({
   selector: 'app-edit-feedback',
@@ -12,7 +12,7 @@ export class EditFeedbackComponent implements OnInit {
   constructor(private route: ActivatedRoute, private apiService: ApiService) {}
 
   feedback: Feedback = {
-    id: 0,
+    id: '',
     category: '',
     description: '',
     status: '',
@@ -26,8 +26,8 @@ export class EditFeedbackComponent implements OnInit {
 
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
 
-    this.apiService.getFeedback(id).subscribe((feedback) => {
-      this.feedback = feedback;
-    });
+    // this.apiService.getFeedback(id).subscribe((feedback) => {
+    //   this.feedback = feedback;
+    // });
   }
 }

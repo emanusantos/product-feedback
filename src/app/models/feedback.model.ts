@@ -4,6 +4,6 @@ export class Feedback {
     public category: string,
     public description: string,
     public status?: string,
-    public id?: number
+    public id?: string
   ) {}
 }

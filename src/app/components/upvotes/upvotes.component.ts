@@ -7,7 +7,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./upvotes.component.sass'],
 })
 export class UpvotesComponent {
-  @Input() id = 0;
+  @Input() id = '';
   @Input() isUpvoted = false;
   @Input() numberOfUpvotes = 0;
 
@@ -16,7 +16,7 @@ export class UpvotesComponent {
   upvote() {
     this.isUpvoted = true;
 
-    this.apiService.upvote(this.id);
+    // this.apiService.upvote(this.id);
   }
 
   getIcon() {
