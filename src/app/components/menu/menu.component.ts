@@ -18,7 +18,7 @@ export class MenuComponent {
 
     let [planned, inProgress, live] = [0, 0, 0];
 
-    data.productRequests.forEach((item) => {
+    data.forEach((item) => {
       if (item.status === 'planned') planned++;
 
       if (item.status === 'in-progress') inProgress++;

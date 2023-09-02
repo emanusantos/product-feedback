@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     document.body.className = 'home';
 
-    this.subscription = this.apiService.fetchFeedbacks().subscribe({
+    this.subscription = this.apiService.dataSource.subscribe({
       next: (feedbacks) => {
         this.data = feedbacks;
       },
