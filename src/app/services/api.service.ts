@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, lastValueFrom, map } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  lastValueFrom,
+  map,
+  throwError,
+} from 'rxjs';
 
 import * as mock from 'assets/data.json';
 
@@ -9,7 +15,9 @@ import { Option } from '../types/option';
 import { handleFilter, handleSort } from '../helpers/array-utils.helper';
 import { CommentReply } from '../types/comment';
 import { HttpClient } from '@angular/common/http';
-import { Feedback } from '../types/feedback';
+import { CreateFeedback, Feedback } from '../types/feedback';
+
+const url = 'http://localhost:8080/feedback';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
@@ -24,13 +32,9 @@ export class ApiService {
   }
 
   async fetchFeedbacks() {
-    const req = this.client.get<Array<Feedback>>(
-      'http://localhost:8080/feedback'
-    );
-
-    const res = await lastValueFrom(req);
-
-    this.dataSource.next(res);
+    return this.client
+      .get<Array<Feedback>>(url)
+      .subscribe((res) => this.dataSource.next(res));
   }
 
   setFilter(filter: string) {
@@ -127,7 +131,17 @@ export class ApiService {
     // this.filteredDataSource.next(data);
   }
 
-  addFeedback(feedback: Feedback) {
+  addFeedback(feedback: CreateFeedback) {
+    this.client
+      .post(url, feedback)
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          return throwError(() => new Error(err));
+        })
+      )
+      .subscribe(() => this.fetchFeedbacks());
+
     // let data = this.filteredDataSource.getValue();
     // const lastFeedback = data[data.length - 1];
     // data = [

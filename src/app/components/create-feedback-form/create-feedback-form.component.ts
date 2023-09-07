@@ -52,7 +52,7 @@ export class CreateFeedbackFormComponent {
     //   return;
     // }
 
-    // this.apiService.addFeedback(this.model);
+    this.apiService.addFeedback(this.model);
 
     this.router.navigate(['/']);
   }

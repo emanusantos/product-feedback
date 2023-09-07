@@ -1,9 +1,12 @@
-export type Feedback = {
-  id: string;
+export interface CreateFeedback {
   title: string;
   description: string;
-  status: string;
   category: string;
+}
+
+export interface Feedback extends CreateFeedback {
+  id: string;
+  status: string;
   upvotes: number;
   comments: [];
-};
+}
