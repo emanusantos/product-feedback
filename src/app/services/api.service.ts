@@ -8,11 +8,8 @@ import {
   throwError,
 } from 'rxjs';
 
-import * as mock from 'assets/data.json';
-
 import { Option } from '../types/option';
 
-import { handleFilter, handleSort } from '../helpers/array-utils.helper';
 import { CommentReply } from '../types/comment';
 import { HttpClient } from '@angular/common/http';
 import { CreateFeedback, Feedback } from '../types/feedback';
@@ -71,10 +68,8 @@ export class ApiService {
     // this.filteredDataSource.next(data);
   }
 
-  getFeedback(id: number) {
-    // return this.filteredDataSource.pipe(
-    //   map((data) => data.find((feedback) => feedback.id === id)!)
-    // );
+  getFeedback(id: string) {
+    return this.client.get<Feedback>(`${url}/${id}`);
   }
 
   comment(postId: number, content: string) {
@@ -132,7 +127,7 @@ export class ApiService {
   }
 
   addFeedback(feedback: CreateFeedback) {
-    this.client
+    return this.client
       .post(url, feedback)
       .pipe(
         catchError((err) => {
@@ -141,22 +136,6 @@ export class ApiService {
         })
       )
       .subscribe(() => this.fetchFeedbacks());
-
-    // let data = this.filteredDataSource.getValue();
-    // const lastFeedback = data[data.length - 1];
-    // data = [
-    //   {
-    //     id: lastFeedback.id + 1,
-    //     category: feedback.category,
-    //     description: feedback.description,
-    //     status: 'suggestion',
-    //     title: feedback.title,
-    //     upvotes: 0,
-    //     comments: [],
-    //   },
-    //   ...data,
-    // ];
-    // this.filteredDataSource.next(data);
   }
 
   editFeedback(feedback: Feedback) {

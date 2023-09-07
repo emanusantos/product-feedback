@@ -27,26 +27,13 @@ export class FeedbackDetailComponent implements OnInit {
   ngOnInit(): void {
     document.body.className = 'details';
 
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    const id = this.route.snapshot.paramMap.get('id')!;
 
-    // this.apiService.getFeedback(id).subscribe((feedback) => {
-    //   if (feedback) {
-    //     let numberOfCommentsCount = 0;
-
-    //     this.feedback = feedback;
-    //     if (feedback.comments) {
-    //       feedback.comments.forEach((comment) => {
-    //         numberOfCommentsCount++;
-
-    //         if (comment.replies)
-    //           numberOfCommentsCount =
-    //             numberOfCommentsCount + comment.replies.length;
-    //       });
-    //     }
-
-    //     this.numberOfComments = numberOfCommentsCount;
-    //   }
-    // });
+    this.apiService.getFeedback(id).subscribe((feedback) => {
+      if (feedback) {
+        this.feedback = feedback;
+      }
+    });
   }
 
   handleTextChange(event: KeyboardEvent) {

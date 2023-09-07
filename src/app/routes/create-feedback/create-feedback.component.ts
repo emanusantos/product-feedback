@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { categoriesWithoutAll } from 'src/app/constants/categories';
 
 @Component({
   selector: 'app-create-feedback',
