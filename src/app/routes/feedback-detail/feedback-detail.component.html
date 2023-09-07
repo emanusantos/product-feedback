@@ -10,7 +10,7 @@
 
   <app-feedback [request]="feedback" />
 
-  <div *ngIf="feedback.comments" class="comments">
+  <div *ngIf="!!feedback.comments.length" class="comments">
     <h3>{{ numberOfComments }} Comments</h3>
     <app-comment
       *ngFor="let comment of feedback.comments; let index = index"

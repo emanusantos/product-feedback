@@ -16,6 +16,6 @@
 
   <div class="comments">
     <img src="../../../assets/shared/icon-comments.svg" />
-    <b>{{ request.comments ? request.comments.length : 0 }}</b>
+    <b>{{ !!request.comments ? request.comments.length : 0 }}</b>
   </div>
 </article>

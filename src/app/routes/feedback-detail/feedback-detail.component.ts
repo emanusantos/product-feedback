@@ -27,13 +27,15 @@ export class FeedbackDetailComponent implements OnInit {
   ngOnInit(): void {
     document.body.className = 'details';
 
-    const id = this.route.snapshot.paramMap.get('id')!;
-
-    this.apiService.getFeedback(id).subscribe((feedback) => {
+    this.apiService.selectedFeedback.subscribe((feedback) => {
       if (feedback) {
         this.feedback = feedback;
       }
     });
+
+    const id = this.route.snapshot.paramMap.get('id')!;
+
+    this.apiService.getFeedback(id);
   }
 
   handleTextChange(event: KeyboardEvent) {

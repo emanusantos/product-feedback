@@ -24,10 +24,12 @@ export class EditFeedbackComponent implements OnInit {
   ngOnInit(): void {
     document.body.className = 'create';
 
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    this.apiService.selectedFeedback.subscribe(
+      (feedback) => (this.feedback = feedback)
+    );
 
-    // this.apiService.getFeedback(id).subscribe((feedback) => {
-    //   this.feedback = feedback;
-    // });
+    const id = this.route.snapshot.paramMap.get('id')!;
+
+    this.apiService.getFeedback(id);
   }
 }

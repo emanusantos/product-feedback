@@ -24,6 +24,16 @@ export class ApiService {
     [] as Array<Feedback>
   );
 
+  selectedFeedback: BehaviorSubject<Feedback> = new BehaviorSubject({
+    id: '',
+    category: '',
+    comments: [],
+    description: '',
+    status: '',
+    title: '',
+    upvotes: 0,
+  });
+
   constructor(private readonly client: HttpClient) {
     this.fetchFeedbacks();
   }
@@ -69,7 +79,9 @@ export class ApiService {
   }
 
   getFeedback(id: string) {
-    return this.client.get<Feedback>(`${url}/${id}`);
+    return this.client
+      .get<Feedback>(`${url}/${id}`)
+      .subscribe((res) => this.selectedFeedback.next(res));
   }
 
   comment(postId: number, content: string) {
@@ -135,10 +147,25 @@ export class ApiService {
           return throwError(() => new Error(err));
         })
       )
-      .subscribe(() => this.fetchFeedbacks());
+      .subscribe(() => {
+        this.fetchFeedbacks();
+      });
   }
 
-  editFeedback(feedback: Feedback) {
+  editFeedback(feedback: Partial<Feedback>) {
     if (!feedback.id) return;
+
+    return this.client
+      .put(`${url}/${feedback.id}`, feedback)
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          return throwError(() => new Error(err));
+        })
+      )
+      .subscribe(() => {
+        this.getFeedback(feedback.id!);
+        this.fetchFeedbacks();
+      });
   }
 }
