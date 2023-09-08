@@ -78,10 +78,11 @@ export class ApiService {
     // this.filteredDataSource.next(data);
   }
 
-  getFeedback(id: string) {
-    return this.client
-      .get<Feedback>(`${url}/${id}`)
-      .subscribe((res) => this.selectedFeedback.next(res));
+  getFeedback(id: string, callback?: () => void) {
+    return this.client.get<Feedback>(`${url}/${id}`).subscribe((res) => {
+      this.selectedFeedback.next(res);
+      if (callback) callback();
+    });
   }
 
   comment(postId: number, content: string) {

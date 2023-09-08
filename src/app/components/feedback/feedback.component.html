@@ -1,4 +1,4 @@
-<article [routerLink]="['/feedback', request.id]">
+<article (click)="handleClick()">
   <app-upvotes
     [numberOfUpvotes]="request.upvotes"
     [isUpvoted]="!!request.isUpvoted"

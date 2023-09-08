@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 import { Feedback } from 'src/app/types/feedback';
 
 @Component({
@@ -7,6 +9,8 @@ import { Feedback } from 'src/app/types/feedback';
   styleUrls: ['./feedback.component.sass'],
 })
 export class FeedbackComponent {
+  constructor(private router: Router, private apiService: ApiService) {}
+
   @Input() request: Feedback & {
     isUpvoted?: boolean;
   } = {
@@ -19,4 +23,10 @@ export class FeedbackComponent {
     comments: [],
     isUpvoted: false,
   };
+
+  handleClick() {
+    this.apiService.getFeedback(this.request.id, () => {
+      this.router.navigate(['/feedback', this.request.id]);
+    });
+  }
 }
