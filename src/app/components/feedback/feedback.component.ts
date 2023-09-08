@@ -25,6 +25,13 @@ export class FeedbackComponent {
   };
 
   handleClick() {
+    const currentFetchedFeedback = this.apiService.selectedFeedback.getValue();
+
+    if (currentFetchedFeedback.id === this.request.id) {
+      this.router.navigate(['/feedback', this.request.id]);
+      return;
+    }
+
     this.apiService.getFeedback(this.request.id, () => {
       this.router.navigate(['/feedback', this.request.id]);
     });

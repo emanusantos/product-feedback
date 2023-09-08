@@ -13,7 +13,9 @@ export class UpvotesComponent {
 
   constructor(private apiService: ApiService) {}
 
-  upvote() {
+  upvote(e: MouseEvent) {
+    e.stopPropagation();
+
     this.isUpvoted = true;
 
     // this.apiService.upvote(this.id);

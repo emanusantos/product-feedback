@@ -157,7 +157,7 @@ export class ApiService {
     if (!feedback.id) return;
 
     return this.client
-      .put(`${url}/${feedback.id}`, feedback)
+      .patch(`${url}/${feedback.id}`, feedback)
       .pipe(
         catchError((err) => {
           console.log(err);

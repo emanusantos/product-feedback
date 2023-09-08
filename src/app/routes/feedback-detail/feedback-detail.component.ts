@@ -35,7 +35,7 @@ export class FeedbackDetailComponent implements OnInit {
 
     const id = this.route.snapshot.paramMap.get('id')!;
 
-    this.apiService.getFeedback(id);
+    if (!this.feedback.id) this.apiService.getFeedback(id);
   }
 
   handleTextChange(event: KeyboardEvent) {
